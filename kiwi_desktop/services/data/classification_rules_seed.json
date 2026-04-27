@@ -1,0 +1,136 @@
+{
+  "WORKSPACES": {
+    "portfolio": "career_portfolio",
+    "ai_project": "ai_projects",
+    "archive": "archive",
+    "case_studies": "case_studies",
+    "markdown": "wiki"
+  },
+
+  "FORCE_RULES": [
+    { "contains": "curriculum vitae",     "category": "portfolio",    "workspace": "career_portfolio", "subfolder": "resumes",       "reason": "CV keyword" },
+    { "contains": "cover letter",         "category": "portfolio",    "workspace": "career_portfolio", "subfolder": "cover_letters", "reason": "Cover letter keyword" },
+    { "contains": "cover_letter",         "category": "portfolio",    "workspace": "career_portfolio", "subfolder": "cover_letters", "reason": "Cover letter keyword" },
+    { "contains": "executive bio",        "category": "portfolio",    "workspace": "career_portfolio", "subfolder": "bio",           "reason": "Bio keyword" },
+    { "contains": "professional bio",     "category": "portfolio",    "workspace": "career_portfolio", "subfolder": "bio",           "reason": "Bio keyword" },
+    { "contains": "speaker bio",          "category": "portfolio",    "workspace": "career_portfolio", "subfolder": "bio",           "reason": "Speaker bio" },
+    { "contains": "linkedin",             "category": "portfolio",    "workspace": "career_portfolio", "subfolder": "linkedin",      "reason": "LinkedIn content" },
+    { "contains": "accomplishment",       "category": "portfolio",    "workspace": "career_portfolio", "subfolder": "achievements",  "reason": "Achievement content" },
+    { "contains": "achievement",          "category": "portfolio",    "workspace": "career_portfolio", "subfolder": "achievements",  "reason": "Achievement content" },
+    { "contains": "resume",               "category": "portfolio",    "workspace": "career_portfolio", "subfolder": "resumes",       "reason": "Resume keyword" },
+    { "contains": "job description",      "category": "archive",      "workspace": "archive",          "subfolder": "job_postings",  "reason": "External job posting" },
+    { "contains": "job posting",          "category": "archive",      "workspace": "archive",          "subfolder": "job_postings",  "reason": "External job posting" },
+    { "contains": "we are looking for",   "category": "archive",      "workspace": "archive",          "subfolder": "job_postings",  "reason": "External job posting" },
+    { "contains": "responsibilities include", "category": "archive",  "workspace": "archive",          "subfolder": "job_postings",  "reason": "External job posting" },
+    { "contains": "notebooklm",           "category": "archive",      "workspace": "archive",          "subfolder": "notebooklm",    "reason": "NotebookLM source" },
+    { "contains": "notebook lm",          "category": "archive",      "workspace": "archive",          "subfolder": "notebooklm",    "reason": "NotebookLM source" },
+    { "contains": "whitepaper",           "category": "archive",      "workspace": "archive",          "subfolder": "whitepapers",   "reason": "Whitepaper content" },
+    { "contains": "white paper",          "category": "archive",      "workspace": "archive",          "subfolder": "whitepapers",   "reason": "Whitepaper content" },
+    { "contains": "according to",         "category": "archive",      "workspace": "archive",          "subfolder": "articles",      "reason": "External article signal" },
+    { "contains": "published by",         "category": "archive",      "workspace": "archive",          "subfolder": "articles",      "reason": "External article signal" },
+    { "contains": "project brief",        "category": "ai_project",   "workspace": "ai_projects",      "subfolder": "projects",      "reason": "Generic project signal" },
+    { "contains": "technical spec",       "category": "ai_project",   "workspace": "ai_projects",      "subfolder": "projects",      "reason": "Generic project signal" },
+    { "contains": "implementation notes", "category": "ai_project",   "workspace": "ai_projects",      "subfolder": "projects",      "reason": "Generic project signal" }
+  ],
+
+  "NEGATIVE_RULES": [],
+
+  "COMPANY_MAP": {
+    "_note": "Add your own company names here",
+    "acme_corp": "archive",
+    "example_client": "archive",
+    "previous_employer": "archive"
+  },
+
+  "PROJECT_MAP": {
+    "_note": "Add your own project names here",
+    "my_main_project": "ai_project",
+    "side_project": "ai_project"
+  },
+
+  "DOC_TYPE_PATTERNS": [
+    { "contains": "case study",      "doc_type": "case_study",    "category": "case_studies", "workspace": "case_studies",    "subfolder": "",           "reason": "Case study content" },
+    { "contains": "success story",   "doc_type": "case_study",    "category": "case_studies", "workspace": "case_studies",    "subfolder": "",           "reason": "Success story signal" },
+    { "contains": "customer story",  "doc_type": "case_study",    "category": "case_studies", "workspace": "case_studies",    "subfolder": "",           "reason": "Customer story signal" },
+    { "contains": "demand generation","doc_type": "strategy_doc", "category": "archive",      "workspace": "archive",         "subfolder": "demand_gen", "reason": "Demand gen content" },
+    { "contains": "demand gen",      "doc_type": "strategy_doc",  "category": "archive",      "workspace": "archive",         "subfolder": "demand_gen", "reason": "Demand gen content" },
+    { "contains": "account-based",   "doc_type": "strategy_doc",  "category": "archive",      "workspace": "archive",         "subfolder": "abm",        "reason": "ABM content" },
+    { "contains": "account based",   "doc_type": "strategy_doc",  "category": "archive",      "workspace": "archive",         "subfolder": "abm",        "reason": "ABM content" },
+    { "contains": "abm",             "doc_type": "strategy_doc",  "category": "archive",      "workspace": "archive",         "subfolder": "abm",        "reason": "ABM content" },
+    { "contains": "go-to-market",    "doc_type": "strategy_doc",  "category": "archive",      "workspace": "archive",         "subfolder": "gtm_strategy","reason": "GTM strategy content" },
+    { "contains": "go to market",    "doc_type": "strategy_doc",  "category": "archive",      "workspace": "archive",         "subfolder": "gtm_strategy","reason": "GTM strategy content" },
+    { "contains": "marketing ops",   "doc_type": "strategy_doc",  "category": "archive",      "workspace": "archive",         "subfolder": "marketing_ops","reason": "Marketing ops content" },
+    { "contains": "marketing operations","doc_type":"strategy_doc","category": "archive",     "workspace": "archive",         "subfolder": "marketing_ops","reason": "Marketing operations" },
+    { "contains": "revops",          "doc_type": "strategy_doc",  "category": "archive",      "workspace": "archive",         "subfolder": "revops",     "reason": "RevOps content" },
+    { "contains": "revenue operations","doc_type":"strategy_doc", "category": "archive",      "workspace": "archive",         "subfolder": "revops",     "reason": "Revenue operations" },
+    { "contains": "campaign brief",  "doc_type": "campaign_doc",  "category": "archive",      "workspace": "archive",         "subfolder": "campaigns",  "reason": "Campaign brief" },
+    { "contains": "campaign plan",   "doc_type": "campaign_doc",  "category": "archive",      "workspace": "archive",         "subfolder": "campaigns",  "reason": "Campaign plan" },
+    { "contains": "content calendar","doc_type": "campaign_doc",  "category": "archive",      "workspace": "archive",         "subfolder": "campaigns",  "reason": "Content calendar" },
+    { "contains": "statement of work","doc_type":"consulting_doc", "category": "archive",     "workspace": "archive",         "subfolder": "consulting",  "reason": "SOW / consulting doc" },
+    { "contains": "sow",             "doc_type": "consulting_doc", "category": "archive",     "workspace": "archive",         "subfolder": "consulting",  "reason": "SOW document" },
+    { "contains": "proposal",        "doc_type": "consulting_doc", "category": "archive",     "workspace": "archive",         "subfolder": "consulting",  "reason": "Proposal document" },
+    { "contains": "retainer",        "doc_type": "consulting_doc", "category": "archive",     "workspace": "archive",         "subfolder": "consulting",  "reason": "Retainer document" },
+    { "contains": "interview",       "doc_type": "interview_doc",  "category": "archive",     "workspace": "archive",         "subfolder": "interviews",  "reason": "Interview content" },
+    { "contains": "transcript",      "doc_type": "transcript",     "category": "archive",     "workspace": "archive",         "subfolder": "transcripts", "reason": "Transcript/chat log" },
+    { "contains": "chat transcript", "doc_type": "transcript",     "category": "archive",     "workspace": "archive",         "subfolder": "transcripts", "reason": "Chat transcript" },
+    { "contains": "meeting notes",   "doc_type": "notes",          "category": "archive",     "workspace": "archive",         "subfolder": "meeting_notes","reason": "Meeting notes" },
+    { "contains": "action item",     "doc_type": "notes",          "category": "archive",     "workspace": "archive",         "subfolder": "meeting_notes","reason": "Action items doc" },
+    { "contains": "quarterly review","doc_type": "strategy_doc",   "category": "archive",     "workspace": "archive",         "subfolder": "strategy",    "reason": "Quarterly review" },
+    { "contains": "pipeline report", "doc_type": "metrics_doc",    "category": "case_studies","workspace": "case_studies",    "subfolder": "",            "reason": "Pipeline metrics doc" },
+    { "contains": "metrics report",  "doc_type": "metrics_doc",    "category": "case_studies","workspace": "case_studies",    "subfolder": "",            "reason": "Metrics report" }
+  ],
+
+  "CODE_EXT": {
+    "py":       "ai_project",
+    "ipynb":    "ai_project",
+    "js":       "ai_project",
+    "ts":       "ai_project",
+    "jsx":      "ai_project",
+    "tsx":      "ai_project",
+    "html":     "ai_project",
+    "css":      "ai_project",
+    "sh":       "ai_project",
+    "yaml":     "ai_project",
+    "yml":      "ai_project",
+    "toml":     "ai_project",
+    "json":     "ai_project",
+    "sql":      "ai_project"
+  },
+
+  "RULE_CONFIDENCE": {
+    "force_rule":    0.96,
+    "negative_rule": 0.95,
+    "company_map":   0.90,
+    "project_map":   0.85,
+    "pattern":       0.75,
+    "ollama":        0.72,
+    "fallback":      0.40
+  },
+
+  "RISKY_KEYWORDS": ["doc", "docs", "file", "files", "note", "notes", "data", "misc"],
+
+  "BROAD_KEYWORDS": ["project", "projects", "brief", "customer", "doc", "docs", "data", "note", "notes", "file", "files"],
+
+  "broad_match_force_review": true,
+
+  "enable_ollama": false,
+  "ollama_model": "qwen2.5",
+  "ai_provider": "ollama",
+  "api_key": "",
+  "cloud_model": "gpt-4o-mini",
+  "ai_mode": "ai_only_unclassified",
+
+  "auto_assign_workspace": true,
+  "duplicate_filename_policy": "rename",
+
+  "chunk_target_size": 220,
+  "minimum_chunk_size": 120,
+
+  "relevance_min_score": 1,
+  "small_file_char_threshold": 260,
+  "preflight_wiki_share_cap": 0.25,
+
+  "confidence_threshold": 0.65,
+  "low_confidence_threshold": 0.65,
+  "review_confidence_threshold": 0.65
+}

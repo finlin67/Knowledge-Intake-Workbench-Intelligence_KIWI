@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KIWI — Getting Started</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600&family=DM+Serif+Display&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:        #0d0d14;
+    --bg2:       #13131e;
+    --bg3:       #1a1a28;
+    --bg4:       #22223a;
+    --border:    #2a2a40;
+    --border2:   #35355a;
+    --accent:    #4a7fff;
+    --accent2:   #7b9fff;
+    --success:   #3a9e6e;
+    --warning:   #c89a20;
+    --text:      #e8e8f4;
+    --text2:     #9090b8;
+    --text3:     #5a5a7a;
+    --mono:      'DM Mono', monospace;
+    --sans:      'DM Sans', sans-serif;
+    --serif:     'DM Serif Display', serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    font-size: 15px;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(13,13,20,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 56px;
+  }
+  .nav-brand {
+    display: flex; align-items: center; gap: 10px;
+    font-family: var(--mono); font-size: 15px; font-weight: 500;
+    color: var(--text); text-decoration: none; letter-spacing: -0.01em;
+  }
+  .nav-brand .kiwi-badge {
+    background: var(--accent); color: #fff;
+    padding: 3px 8px; border-radius: 4px;
+    font-size: 11px; font-weight: 500; letter-spacing: 0.05em;
+  }
+  .nav-links { display: flex; gap: 2rem; }
+  .nav-links a {
+    font-size: 13px; color: var(--text2); text-decoration: none;
+    letter-spacing: 0.02em;
+    transition: color 0.15s;
+  }
+  .nav-links a:hover { color: var(--text); }
+
+  /* ── HERO ── */
+  .hero {
+    padding: 5rem 2rem 4rem;
+    max-width: 860px; margin: 0 auto;
+    text-align: center;
+  }
+  .hero-eyebrow {
+    font-family: var(--mono); font-size: 11px;
+    color: var(--accent); letter-spacing: 0.12em;
+    text-transform: uppercase; margin-bottom: 1.25rem;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+  }
+  .hero-eyebrow::before,
+  .hero-eyebrow::after {
+    content: ''; flex: 1; max-width: 60px;
+    height: 1px; background: var(--border2);
+  }
+  .hero h1 {
+    font-family: var(--serif);
+    font-size: clamp(2.4rem, 5vw, 3.6rem);
+    line-height: 1.15; font-weight: 400;
+    color: var(--text); margin-bottom: 1.25rem;
+    letter-spacing: -0.02em;
+  }
+  .hero h1 em { font-style: normal; color: var(--accent2); }
+  .hero-sub {
+    font-size: 16px; color: var(--text2);
+    max-width: 560px; margin: 0 auto 2.5rem;
+    font-weight: 300; line-height: 1.7;
+  }
+  .hero-cta {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--accent); color: #fff;
+    padding: 11px 24px; border-radius: 6px;
+    font-size: 14px; font-weight: 500; text-decoration: none;
+    transition: background 0.15s, transform 0.1s;
+  }
+  .hero-cta:hover { background: #6090ff; transform: translateY(-1px); }
+  .hero-cta-ghost {
+    display: inline-flex; align-items: center; gap: 8px;
+    border: 1px solid var(--border2); color: var(--text2);
+    padding: 11px 24px; border-radius: 6px; margin-left: 10px;
+    font-size: 14px; text-decoration: none;
+    transition: border-color 0.15s, color 0.15s;
+  }
+  .hero-cta-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* ── WORKFLOW STRIP ── */
+  .workflow-section {
+    max-width: 900px; margin: 0 auto;
+    padding: 0 2rem 4rem;
+  }
+  .workflow-strip {
+    display: flex; align-items: center;
+    background: var(--bg2); border: 1px solid var(--border);
+    border-radius: 10px; padding: 20px 24px;
+    gap: 6px; flex-wrap: wrap;
+    justify-content: center;
+  }
+  .wf-pill {
+    background: var(--bg3); border: 1px solid var(--border);
+    border-radius: 6px; padding: 8px 14px;
+    font-size: 13px; color: var(--text2);
+    white-space: nowrap;
+    transition: border-color 0.15s;
+  }
+  .wf-pill strong { color: var(--text); font-weight: 500; }
+  .wf-pill.action {
+    border-color: var(--accent);
+    color: var(--accent2); background: rgba(74,127,255,0.08);
+  }
+  .wf-arrow { color: var(--text3); font-size: 14px; padding: 0 2px; }
+  .workflow-note {
+    text-align: center; margin-top: 14px;
+    font-size: 12px; color: var(--text3);
+    font-family: var(--mono);
+  }
+
+  /* ── SECTIONS ── */
+  .container { max-width: 900px; margin: 0 auto; padding: 0 2rem; }
+  .section { padding: 4rem 0; border-top: 1px solid var(--border); }
+  .section-header { margin-bottom: 2.5rem; }
+  .section-label {
+    font-family: var(--mono); font-size: 11px;
+    color: var(--accent); letter-spacing: 0.1em;
+    text-transform: uppercase; margin-bottom: 0.6rem;
+  }
+  .section-title {
+    font-family: var(--serif); font-size: 1.9rem;
+    font-weight: 400; color: var(--text);
+    letter-spacing: -0.02em; line-height: 1.2;
+  }
+  .section-desc {
+    margin-top: 0.6rem; font-size: 14px;
+    color: var(--text2); max-width: 520px; font-weight: 300;
+  }
+
+  /* ── STEP CARDS (getting started) ── */
+  .steps { display: flex; flex-direction: column; gap: 16px; }
+  .step-card {
+    background: var(--bg2); border: 1px solid var(--border);
+    border-radius: 10px; overflow: hidden;
+    display: grid; grid-template-columns: 200px 1fr;
+  }
+  .step-left {
+    padding: 24px; background: var(--bg3);
+    border-right: 1px solid var(--border);
+    display: flex; flex-direction: column; justify-content: center;
+  }
+  .step-num {
+    font-family: var(--mono); font-size: 11px;
+    color: var(--text3); letter-spacing: 0.08em;
+    margin-bottom: 6px;
+  }
+  .step-name {
+    font-size: 16px; font-weight: 500; color: var(--text);
+    line-height: 1.3; margin-bottom: 8px;
+  }
+  .step-badge {
+    display: inline-flex; align-items: center;
+    font-size: 10px; font-family: var(--mono);
+    background: rgba(74,127,255,0.15);
+    color: var(--accent); padding: 3px 8px;
+    border-radius: 4px; width: fit-content;
+  }
+  .step-right { padding: 24px 28px; }
+  .step-desc {
+    font-size: 14px; color: var(--text2);
+    line-height: 1.7; margin-bottom: 16px; font-weight: 300;
+  }
+  .step-actions {
+    display: flex; flex-wrap: wrap; gap: 8px;
+  }
+  .action-tag {
+    font-family: var(--mono); font-size: 11px;
+    background: var(--bg4); border: 1px solid var(--border2);
+    color: var(--text2); padding: 4px 10px; border-radius: 4px;
+  }
+  .action-tag.primary {
+    border-color: var(--accent); color: var(--accent);
+    background: rgba(74,127,255,0.08);
+  }
+
+  /* ── TAB CONCEPTS ── */
+  .tab-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 12px;
+  }
+  .tab-card {
+    background: var(--bg2); border: 1px solid var(--border);
+    border-radius: 8px; padding: 18px 20px;
+    transition: border-color 0.15s;
+  }
+  .tab-card:hover { border-color: var(--border2); }
+  .tab-card-header {
+    display: flex; align-items: center; gap: 10px;
+    margin-bottom: 10px;
+  }
+  .tab-icon {
+    width: 30px; height: 30px; border-radius: 6px;
+    background: var(--bg4); border: 1px solid var(--border2);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px;
+  }
+  .tab-name { font-size: 13px; font-weight: 500; color: var(--text); }
+  .tab-mode {
+    font-size: 10px; font-family: var(--mono);
+    color: var(--text3); margin-left: auto;
+  }
+  .tab-desc { font-size: 13px; color: var(--text2); line-height: 1.6; font-weight: 300; }
+
+  /* ── FAQ ── */
+  .faq-list { display: flex; flex-direction: column; }
+  .faq-item {
+    border-bottom: 1px solid var(--border);
+    padding: 20px 0;
+  }
+  .faq-item:last-child { border-bottom: none; }
+  .faq-q {
+    font-size: 15px; font-weight: 500; color: var(--text);
+    margin-bottom: 8px; line-height: 1.4;
+    display: flex; gap: 12px; align-items: flex-start;
+  }
+  .faq-q::before {
+    content: 'Q';
+    font-family: var(--mono); font-size: 10px;
+    color: var(--accent); background: rgba(74,127,255,0.12);
+    border: 1px solid rgba(74,127,255,0.3);
+    border-radius: 4px; padding: 2px 6px;
+    flex-shrink: 0; margin-top: 2px;
+  }
+  .faq-a {
+    font-size: 14px; color: var(--text2);
+    line-height: 1.7; padding-left: 34px; font-weight: 300;
+  }
+
+  /* ── GLOSSARY ── */
+  .glossary-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 10px;
+  }
+  .glossary-card {
+    background: var(--bg2); border: 1px solid var(--border);
+    border-radius: 8px; padding: 16px 18px;
+  }
+  .glossary-term {
+    font-family: var(--mono); font-size: 12px;
+    color: var(--accent2); margin-bottom: 6px;
+    letter-spacing: 0.02em;
+  }
+  .glossary-def {
+    font-size: 13px; color: var(--text2);
+    line-height: 1.6; font-weight: 300;
+  }
+
+  /* ── AI PROVIDERS ── */
+  .provider-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;
+  }
+  .provider-card {
+    background: var(--bg2); border: 1px solid var(--border);
+    border-radius: 10px; padding: 20px;
+  }
+  .provider-card.recommended { border-color: var(--success); }
+  .provider-badge {
+    font-size: 10px; font-family: var(--mono);
+    padding: 3px 8px; border-radius: 4px; margin-bottom: 12px;
+    display: inline-block;
+  }
+  .provider-badge.free { background: rgba(58,158,110,0.15); color: var(--success); }
+  .provider-badge.api { background: rgba(74,127,255,0.12); color: var(--accent); }
+  .provider-name { font-size: 15px; font-weight: 500; color: var(--text); margin-bottom: 8px; }
+  .provider-desc { font-size: 13px; color: var(--text2); line-height: 1.6; margin-bottom: 14px; font-weight: 300; }
+  .provider-steps { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+  .provider-steps li {
+    font-size: 12px; color: var(--text2);
+    display: flex; gap: 8px; align-items: flex-start;
+  }
+  .provider-steps li::before {
+    content: attr(data-n);
+    font-family: var(--mono); font-size: 10px;
+    color: var(--accent); background: rgba(74,127,255,0.12);
+    border-radius: 3px; padding: 1px 5px;
+    flex-shrink: 0; margin-top: 1px;
+  }
+
+  /* ── TIP BOX ── */
+  .tip-box {
+    background: rgba(74,127,255,0.07);
+    border: 1px solid rgba(74,127,255,0.25);
+    border-radius: 8px; padding: 16px 20px; margin-top: 20px;
+  }
+  .tip-label {
+    font-family: var(--mono); font-size: 10px;
+    color: var(--accent); letter-spacing: 0.1em;
+    margin-bottom: 6px;
+  }
+  .tip-text { font-size: 13px; color: var(--text2); line-height: 1.6; font-weight: 300; }
+  .tip-text code {
+    font-family: var(--mono); font-size: 12px;
+    background: var(--bg4); padding: 1px 6px;
+    border-radius: 3px; color: var(--accent2);
+  }
+
+  /* ── CODE BLOCK ── */
+  .code-block {
+    background: var(--bg2); border: 1px solid var(--border);
+    border-radius: 8px; padding: 16px 20px; margin-top: 14px;
+    font-family: var(--mono); font-size: 13px;
+    color: var(--text2); line-height: 1.8; overflow-x: auto;
+  }
+  .code-block .comment { color: var(--text3); }
+  .code-block .cmd { color: var(--accent2); }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 2.5rem 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    max-width: 900px; margin: 0 auto;
+  }
+  .footer-brand {
+    font-family: var(--mono); font-size: 13px; color: var(--text3);
+  }
+  .footer-links { display: flex; gap: 1.5rem; }
+  .footer-links a {
+    font-size: 13px; color: var(--text3);
+    text-decoration: none; transition: color 0.15s;
+  }
+  .footer-links a:hover { color: var(--accent); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 640px) {
+    .step-card { grid-template-columns: 1fr; }
+    .step-left { border-right: none; border-bottom: 1px solid var(--border); }
+    .provider-grid { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+    footer { flex-direction: column; gap: 1rem; text-align: center; }
+  }
+
+  /* ── SCROLL ANIMATIONS ── */
+  .fade-in {
+    opacity: 0; transform: translateY(14px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+  .fade-in.visible { opacity: 1; transform: none; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-brand" href="#">
+    <span class="kiwi-badge">KIWI</span>
+    Knowledge Intake Workbench
+  </a>
+  <div class="nav-links">
+    <a href="#quickstart">Quick start</a>
+    <a href="#tabs">Tab guide</a>
+    <a href="#ai">AI setup</a>
+    <a href="#faq">FAQ</a>
+    <a href="#glossary">Glossary</a>
+    <a href="https://github.com/finlin67/KIWI-Knowledge-Intake-Workbench-Intelligence">GitHub →</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-eyebrow">Getting Started Guide</div>
+  <h1>Your documents,<br><em>organized for AI</em></h1>
+  <p class="hero-sub">
+    KIWI scans your work documents, classifies them into topic-based workspaces,
+    and exports a structured knowledge base your AI tools can actually use.
+    No coding required.
+  </p>
+  <div>
+    <a class="hero-cta" href="#quickstart">Start here →</a>
+    <a class="hero-cta-ghost" href="https://github.com/finlin67/KIWI-Knowledge-Intake-Workbench-Intelligence">View on GitHub</a>
+  </div>
+</section>
+
+<!-- WORKFLOW STRIP -->
+<div class="workflow-section fade-in">
+  <div class="workflow-strip">
+    <div class="wf-pill"><strong>1.</strong> Point at folder</div>
+    <div class="wf-arrow">→</div>
+    <div class="wf-pill action"><strong>2. Scan</strong></div>
+    <div class="wf-arrow">→</div>
+    <div class="wf-pill"><strong>3.</strong> Review Triage</div>
+    <div class="wf-arrow">→</div>
+    <div class="wf-pill action"><strong>4. Run</strong></div>
+    <div class="wf-arrow">→</div>
+    <div class="wf-pill"><strong>5.</strong> Use in AI tool</div>
+  </div>
+  <div class="workflow-note">// the complete pipeline from raw files to queryable knowledge base</div>
+</div>
+
+<!-- QUICK START -->
+<section class="section" id="quickstart">
+  <div class="container">
+    <div class="section-header fade-in">
+      <div class="section-label">Quick start</div>
+      <div class="section-title">Your first five minutes</div>
+      <div class="section-desc">Follow these steps in order. Most users have their first export done in under 10 minutes.</div>
+    </div>
+
+    <div class="steps">
+      <div class="step-card fade-in">
+        <div class="step-left">
+          <div class="step-num">STEP 01</div>
+          <div class="step-name">Name your project & set folders</div>
+          <div class="step-badge">Step 1 panel</div>
+        </div>
+        <div class="step-right">
+          <div class="step-desc">
+            Enter a project name (anything works — "MyDocs", "CareerFiles", "Q3Archive").
+            Set your <strong>Source Folder</strong> to the folder containing your documents,
+            and your <strong>Output Folder</strong> to wherever you want the organized export to land.
+          </div>
+          <div class="step-actions">
+            <span class="action-tag">Project Name field</span>
+            <span class="action-tag">Source Folder → Browse</span>
+            <span class="action-tag">Output Folder → Browse</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="step-card fade-in">
+        <div class="step-left">
+          <div class="step-num">STEP 02</div>
+          <div class="step-name">Scan your folder</div>
+          <div class="step-badge">Step 3 panel</div>
+        </div>
+        <div class="step-right">
+          <div class="step-desc">
+            Click <strong>Create + Load + Scan</strong> — this single button creates your project,
+            loads it, and scans all documents in your Source Folder. KIWI reads every PDF,
+            Word doc, PowerPoint, and markdown file it finds. This takes a few seconds to a
+            few minutes depending on how many files you have.
+          </div>
+          <div class="step-actions">
+            <span class="action-tag primary">+ Create + Load + Scan</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="step-card fade-in">
+        <div class="step-left">
+          <div class="step-num">STEP 03</div>
+          <div class="step-name">Review the Triage tab</div>
+          <div class="step-badge">Expert mode</div>
+        </div>
+        <div class="step-right">
+          <div class="step-desc">
+            Switch to <strong>Expert Mode</strong> using the toggle in the status bar,
+            then open the <strong>Triage</strong> tab. The five stat cards at the top tell you
+            how many files need attention. Files marked "High priority" or "Rule gaps"
+            are the ones worth reviewing — KIWI wasn't sure where to put them.
+            You can assign them manually or skip them for now.
+          </div>
+          <div class="step-actions">
+            <span class="action-tag">Toggle Expert Mode</span>
+            <span class="action-tag">Triage tab</span>
+            <span class="action-tag">Filter by Priority</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="step-card fade-in">
+        <div class="step-left">
+          <div class="step-num">STEP 04</div>
+          <div class="step-name">Run the export</div>
+          <div class="step-badge">Step 3 panel</div>
+        </div>
+        <div class="step-right">
+          <div class="step-desc">
+            Click <strong>Run Queue</strong> to export your classified documents to the Output Folder.
+            Watch the <strong>Run Monitor</strong> tab for progress. When complete,
+            your Output Folder will contain organized workspace subfolders ready to
+            import into AnythingLLM or Open WebUI.
+          </div>
+          <div class="step-actions">
+            <span class="action-tag primary">Run Queue</span>
+            <span class="action-tag">Run Monitor tab</span>
+            <span class="action-tag primary">Run Both Profiles</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="step-card fade-in">
+        <div class="step-left">
+          <div class="step-num">STEP 05</div>
+          <div class="step-name">Point your AI tool at the output</div>
+          <div class="step-badge">Outside KIWI</div>
+        </div>
+        <div class="step-right">
+          <div class="step-desc">
+            In <strong>AnythingLLM</strong> or <strong>Open WebUI</strong>, create a workspace
+            and upload or point it at your Output Folder. Your documents are now
+            organized, chunked, and ready to query. Ask your AI assistant anything
+            about your professional history, projects, or expertise.
+          </div>
+          <div class="step-actions">
+            <span class="action-tag">AnythingLLM workspace</span>
+            <span class="action-tag">Open WebUI collection</span>
+          </div>
+          <div class="tip-box" style="margin-top:14px">
+            <div class="tip-label">Pro tip</div>
+            <div class="tip-text">
+              Use <code>Run Both Profiles</code> in Step 3 to export in both AnythingLLM
+              and Open WebUI formats simultaneously. Try both and see which your AI tool
+              retrieves from more accurately.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TAB GUIDE -->
+<section class="section" id="tabs">
+  <div class="container">
+    <div class="section-header fade-in">
+      <div class="section-label">Tab guide</div>
+      <div class="section-title">What each tab does</div>
+      <div class="section-desc">Simple Mode shows 3 tabs. Toggle Expert Mode to see all 7.</div>
+    </div>
+    <div class="tab-grid">
+      <div class="tab-card fade-in">
+        <div class="tab-card-header">
+          <div class="tab-icon">☰</div>
+          <div class="tab-name">Queue</div>
+          <div class="tab-mode">Simple</div>
+        </div>
+        <div class="tab-desc">Shows files pending for the next Run. Verify what will be processed before clicking Run Queue.</div>
+      </div>
+      <div class="tab-card fade-in">
+        <div class="tab-card-header">
+          <div class="tab-icon">📈</div>
+          <div class="tab-name">Run Monitor</div>
+          <div class="tab-mode">Simple</div>
+        </div>
+        <div class="tab-desc">Live progress during a run. Shows a preflight summary before you start — check this to confirm scope.</div>
+      </div>
+      <div class="tab-card fade-in">
+        <div class="tab-card-header">
+          <div class="tab-icon">⚙️</div>
+          <div class="tab-name">Settings</div>
+          <div class="tab-mode">Simple</div>
+        </div>
+        <div class="tab-desc">Configure AI provider, workspaces, rules, and chunking behavior. My Categories lets you define your topics without editing JSON.</div>
+      </div>
+      <div class="tab-card fade-in">
+        <div class="tab-card-header">
+          <div class="tab-icon">📋</div>
+          <div class="tab-name">Inventory</div>
+          <div class="tab-mode">Expert</div>
+        </div>
+        <div class="tab-desc">Full list of every file scanned with its classification status. Search and audit what's been processed.</div>
+      </div>
+      <div class="tab-card fade-in">
+        <div class="tab-card-header">
+          <div class="tab-icon">👁</div>
+          <div class="tab-name">Review</div>
+          <div class="tab-mode">Expert</div>
+        </div>
+        <div class="tab-desc">Files below the confidence threshold that need a human decision. Assign or skip them here.</div>
+      </div>
+      <div class="tab-card fade-in">
+        <div class="tab-card-header">
+          <div class="tab-icon">🔍</div>
+          <div class="tab-name">Triage</div>
+          <div class="tab-mode">Expert</div>
+        </div>
+        <div class="tab-desc">Command center for unassigned files. Five stat cards show the health of your classification run at a glance.</div>
+      </div>
+      <div class="tab-card fade-in">
+        <div class="tab-card-header">
+          <div class="tab-icon">📤</div>
+          <div class="tab-name">Exports</div>
+          <div class="tab-mode">Expert</div>
+        </div>
+        <div class="tab-desc">Manage export profiles and trigger exports. Supports AnythingLLM (flat) and Open WebUI (hierarchy) formats.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AI PROVIDERS -->
+<section class="section" id="ai">
+  <div class="container">
+    <div class="section-header fade-in">
+      <div class="section-label">AI setup</div>
+      <div class="section-title">Choosing an AI provider</div>
+      <div class="section-desc">KIWI works without any AI at all. Add a provider to classify files that don't match your rules.</div>
+    </div>
+    <div class="provider-grid">
+      <div class="provider-card recommended fade-in">
+        <div class="provider-badge free">Free · Local</div>
+        <div class="provider-name">Ollama</div>
+        <div class="provider-desc">Runs entirely on your computer. No API key, no cost, no data leaving your machine. Best for privacy-conscious users.</div>
+        <ul class="provider-steps">
+          <li data-n="1">Download Ollama from ollama.ai</li>
+          <li data-n="2">Run: <code style="font-family:monospace;font-size:11px;background:#1a1a28;padding:1px 5px;border-radius:3px;color:#7b9fff">ollama pull llama3.2:3b</code></li>
+          <li data-n="3">In KIWI Settings → set AI Provider to ollama</li>
+          <li data-n="4">Click Test Ollama Connection</li>
+        </ul>
+      </div>
+      <div class="provider-card fade-in">
+        <div class="provider-badge api">API key required</div>
+        <div class="provider-name">Claude (Anthropic)</div>
+        <div class="provider-desc">High accuracy classification. claude-haiku is fast and cost-effective for bulk document processing.</div>
+        <ul class="provider-steps">
+          <li data-n="1">Get API key at console.anthropic.com</li>
+          <li data-n="2">In KIWI Settings → AI Provider → claude</li>
+          <li data-n="3">Paste your API key</li>
+          <li data-n="4">Select claude-haiku for speed/cost</li>
+        </ul>
+      </div>
+      <div class="provider-card fade-in">
+        <div class="provider-badge api">API key required</div>
+        <div class="provider-name">OpenAI</div>
+        <div class="provider-desc">Widely recognized models. gpt-4o-mini is recommended for classification — accurate and affordable.</div>
+        <ul class="provider-steps">
+          <li data-n="1">Get API key at platform.openai.com</li>
+          <li data-n="2">In KIWI Settings → AI Provider → openai</li>
+          <li data-n="3">Paste your API key</li>
+          <li data-n="4">Select gpt-4o-mini</li>
+        </ul>
+      </div>
+    </div>
+    <div class="tip-box fade-in">
+      <div class="tip-label">You don't need AI to get started</div>
+      <div class="tip-text">
+        KIWI's rule-based classifier handles the majority of files for most users.
+        Go to <code>Settings → My Categories</code> and add your company names,
+        project keywords, and topic phrases. Files matching those rules are
+        classified instantly — no API calls, no cost, no latency.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LARGE ARCHIVES -->
+<section class="section" id="largefiles">
+  <div class="container">
+    <div class="section-header fade-in">
+      <div class="section-label">Large archives</div>
+      <div class="section-title">Working with 1,000+ files</div>
+      <div class="section-desc">Use the Archive Prep Tool to split large folders into manageable batches before scanning.</div>
+    </div>
+    <div class="tip-box fade-in" style="margin-bottom:20px">
+      <div class="tip-label">Recommended batch sizes</div>
+      <div class="tip-text">
+        Under 1,000 files → no batching needed.<br>
+        1,000–5,000 files → 500 files per batch.<br>
+        5,000–20,000 files → 300–500 per batch.<br>
+        20,000+ files → 200–300 per batch.
+      </div>
+    </div>
+    <div class="code-block fade-in">
+      <span class="comment"># Run the Archive Prep Tool standalone</span><br>
+      <span class="cmd">python archive_prep_tool_gui.py</span><br><br>
+      <span class="comment"># Or launch it from inside KIWI using the Prep Tool button in Step 2</span>
+    </div>
+    <div style="margin-top:14px;font-size:13px;color:var(--text2);font-weight:300;line-height:1.7;">
+      The Prep Tool removes empty files, splits your archive into numbered batch folders,
+      and generates a CSV manifest. Point KIWI's Source Folder at one batch at a time.
+      When KIWI finishes a batch, move to the next.
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section" id="faq">
+  <div class="container">
+    <div class="section-header fade-in">
+      <div class="section-label">FAQ</div>
+      <div class="section-title">Common questions</div>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item fade-in">
+        <div class="faq-q">What does "unassigned" mean in the Triage tab?</div>
+        <div class="faq-a">KIWI couldn't confidently route the file to a workspace using your current rules. You can assign it manually, add a rule to handle similar files automatically next time, or mark it to skip. "Safe to skip" files are typically empty, tiny, or duplicate — KIWI flags them so you don't have to review each one.</div>
+      </div>
+      <div class="faq-item fade-in">
+        <div class="faq-q">Do I need an AI provider to use KIWI?</div>
+        <div class="faq-a">No. KIWI works entirely on rules you define in Settings → My Categories. AI (Ollama, Claude, or OpenAI) is optional — it's only called for files that don't match any of your rules. Most users find that well-configured rules handle 80–90% of their files without any AI at all.</div>
+      </div>
+      <div class="faq-item fade-in">
+        <div class="faq-q">What's the difference between AnythingLLM and Open WebUI export?</div>
+        <div class="faq-a">AnythingLLM gets a flat folder of markdown files — all documents in one directory. Open WebUI gets a folder hierarchy that mirrors your workspace structure. Use Run Both Profiles to generate both simultaneously, then try each with your AI tool to see which retrieves more accurately for your use case.</div>
+      </div>
+      <div class="faq-item fade-in">
+        <div class="faq-q">What is Simple vs Expert Mode?</div>
+        <div class="faq-a">Simple Mode shows the three tabs you need for most runs: Queue, Run Monitor, and Settings. Expert Mode reveals the full tab set — Inventory, Review, Triage, Queue, Run Monitor, Exports, and Settings. Start in Simple Mode and switch to Expert once you're comfortable with the basic workflow.</div>
+      </div>
+      <div class="faq-item fade-in">
+        <div class="faq-q">What happens if I click Stop mid-run?</div>
+        <div class="faq-a">KIWI saves all work completed up to that point. You can Resume later to continue from where it stopped, or start a new Run — nothing is lost. Pause temporarily halts the run without closing it; Stop ends the active loop.</div>
+      </div>
+      <div class="faq-item fade-in">
+        <div class="faq-q">How do I teach KIWI about my specific documents?</div>
+        <div class="faq-a">Go to Settings → My Categories. Add your company names under Companies (e.g. "boeing", "lockheed"), your project names under Projects, and specific document keywords under Keywords & Rules. KIWI uses these to classify files deterministically — faster and more accurate than AI for your known content.</div>
+      </div>
+      <div class="faq-item fade-in">
+        <div class="faq-q">Can I use this if I'm not a developer?</div>
+        <div class="faq-a">Yes. KIWI requires Python 3.11 to install, which is a one-time download. After that, everything is a point-and-click desktop application. A packaged Windows .exe installer (no Python required) is on the roadmap for future releases.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GLOSSARY -->
+<section class="section" id="glossary">
+  <div class="container">
+    <div class="section-header fade-in">
+      <div class="section-label">Glossary</div>
+      <div class="section-title">Plain English definitions</div>
+      <div class="section-desc">Terms you'll encounter in KIWI and what they actually mean.</div>
+    </div>
+    <div class="glossary-grid">
+      <div class="glossary-card fade-in">
+        <div class="glossary-term">Workspace</div>
+        <div class="glossary-def">A top-level folder category. Files are sorted into workspaces (e.g. career_portfolio, ai_projects, archive). You define which workspaces exist in Settings.</div>
+      </div>
+      <div class="glossary-card fade-in">
+        <div class="glossary-term">Force Rule</div>
+        <div class="glossary-def">A keyword that always routes a file to a specific workspace — no AI needed. Highest priority classification rule. If a filename or content contains "resume", it goes to career_portfolio.</div>
+      </div>
+      <div class="glossary-card fade-in">
+        <div class="glossary-term">Triage</div>
+        <div class="glossary-def">Files KIWI couldn't confidently classify using your rules. Reviewing these and adding new rules improves every future run.</div>
+      </div>
+      <div class="glossary-card fade-in">
+        <div class="glossary-term">Batch</div>
+        <div class="glossary-def">A subfolder of files processed in one KIWI run. Created by the Archive Prep Tool when splitting large archives.</div>
+      </div>
+      <div class="glossary-card fade-in">
+        <div class="glossary-term">Export Profile</div>
+        <div class="glossary-def">AnythingLLM (flat file output) or Open WebUI (folder hierarchy). Controls how your exported knowledge base is structured.</div>
+      </div>
+      <div class="glossary-card fade-in">
+        <div class="glossary-term">Confidence threshold</div>
+        <div class="glossary-def">How certain KIWI must be before auto-assigning a file. Set in Settings. Lower = more auto-assignments, less manual review required.</div>
+      </div>
+      <div class="glossary-card fade-in">
+        <div class="glossary-term">Rule gap</div>
+        <div class="glossary-def">A file that didn't match any rule in your config and had to fall back to AI or manual review. Adding a rule for it prevents future gaps.</div>
+      </div>
+      <div class="glossary-card fade-in">
+        <div class="glossary-term">Subfolder</div>
+        <div class="glossary-def">A second-level folder inside a workspace. For example, career_portfolio/resumes or archive/abm. Defined in your Force Rules.</div>
+      </div>
+      <div class="glossary-card fade-in">
+        <div class="glossary-term">Preflight summary</div>
+        <div class="glossary-def">The report shown in Run Monitor before you click Run. Shows total files in scope, pending count, AI mode, and export target.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<div class="container">
+  <footer>
+    <div class="footer-brand">KIWI — Knowledge Intake Workbench Intelligence</div>
+    <div class="footer-links">
+      <a href="https://github.com/finlin67/KIWI-Knowledge-Intake-Workbench-Intelligence">GitHub</a>
+      <a href="https://gtmstack.pro">GTMStack.pro</a>
+      <a href="#quickstart">Back to top ↑</a>
+    </div>
+  </footer>
+</div>
+
+<script>
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
