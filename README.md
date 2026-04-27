@@ -3,9 +3,8 @@
 - KIWI is a Windows local-first workflow for organizing large document sets into repeatable batches.
 - KIWI is currently packaged as a Windows local-first V1 using start_kiwi.bat and stop_kiwi.bat.
 - The web UI is the primary operator interface. Desktop/local tooling supports the local processing workflow.
-- 
-<img width="711" height="400" alt="image" src="https://github.com/user-attachments/assets/76272620-fa7c-41ab-b249-130545a1139d" />
-
+  
+<img width="533" height="300" alt="image" src="https://github.com/user-attachments/assets/76272620-fa7c-41ab-b249-130545a1139d" />
 
 ## What is KIWI?
 
