@@ -4,6 +4,9 @@ setlocal
 set "ROOT_DIR=%~dp0"
 set "DESKTOP_DIR=%ROOT_DIR%kiwi_desktop"
 set "WEB_DIR=%ROOT_DIR%KIWI_Web"
+set "ROOT_VENV_PY=%ROOT_DIR%.venv\Scripts\python.exe"
+set "DESKTOP_VENV_PY=%DESKTOP_DIR%\.venv\Scripts\python.exe"
+set "PYTHON_EXE="
 set "API_PORT="
 set "BACKEND_MODE=dev"
 set "UVICORN_RELOAD_ARG=--reload"
@@ -60,12 +63,22 @@ if errorlevel 1 (
   goto :fail
 )
 
-echo Checking Python...
-where python >nul 2>&1
-if errorlevel 1 (
-  echo [ERROR] Python was not found.
-  echo Install Python 3.10+ and ensure python is on PATH.
-  goto :fail
+echo Resolving Python runtime...
+if exist "%ROOT_VENV_PY%" (
+  set "PYTHON_EXE=%ROOT_VENV_PY%"
+  echo Using root virtual environment Python: %ROOT_VENV_PY%
+) else if exist "%DESKTOP_VENV_PY%" (
+  set "PYTHON_EXE=%DESKTOP_VENV_PY%"
+  echo Using kiwi_desktop virtual environment Python: %DESKTOP_VENV_PY%
+) else (
+  where python >nul 2>&1
+  if errorlevel 1 (
+    echo [ERROR] Python was not found.
+    echo Install Python 3.10+ and ensure python is on PATH.
+    goto :fail
+  )
+  set "PYTHON_EXE=python"
+  echo Using system Python from PATH.
 )
 
 echo Selecting API port...
@@ -83,7 +96,7 @@ if not defined API_PORT set "API_PORT=8300"
 echo Using backend API port: %API_PORT%
 echo Backend mode: %BACKEND_MODE%
 echo Starting backend...
-start "KIWI API (port %API_PORT%)" cmd /k "cd /d "%DESKTOP_DIR%" && if exist ".venv\Scripts\activate.bat" call ".venv\Scripts\activate.bat" && python -m uvicorn api.main:app %UVICORN_RELOAD_ARG% --port %API_PORT%"
+start "KIWI API (port %API_PORT%)" cmd /k "cd /d "%DESKTOP_DIR%" && "%PYTHON_EXE%" -m uvicorn api.main:app %UVICORN_RELOAD_ARG% --port %API_PORT%"
 
 timeout /t 2 /nobreak >nul
 
