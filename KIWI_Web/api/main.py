@@ -1,8 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from api.routers import batch_prep
-from routers import exports, monitor, projects, queue, scan, settings
+from api.routers import batch_prep, exports, monitor, projects, queue, scan, settings
 
 app = FastAPI(title="KIWI API Wrapper")
 

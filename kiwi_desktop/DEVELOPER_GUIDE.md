@@ -629,7 +629,7 @@ Current operator flow is primarily through the web app (`KIWI_Web`) backed by Fa
 - API surface: `kiwi_desktop/api/routers/`
 - Windows portable release workflow: `.github/workflows/windows-release.yml`
 
-For release steps and tag-based packaging, see `RELEASE_WINDOWS_GUIDE.md` in the repository root.
+For release steps and tag-based packaging, see `../Support Documents/RELEASE_WINDOWS_GUIDE.md`.
 
 ### Running Locally
 

@@ -13,10 +13,10 @@
 
 ## Startup and shutdown
 
-- [ ] start_kiwi.bat starts backend and web services
+- [ ] Start Here.bat starts backend and web services
 - [ ] Browser URL is shown clearly in startup output
 - [ ] Home/Setup shows Backend: Online
-- [ ] stop_kiwi.bat stops KIWI services cleanly
+- [ ] Start Here.bat -> Stop KIWI stops services cleanly
 
 ## Core workflow smoke test
 

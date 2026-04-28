@@ -1,11 +1,13 @@
 @echo off
 setlocal EnableExtensions
 
-set "ROOT_DIR=%~dp0"
+set "SCRIPT_DIR=%~dp0"
+for %%I in ("%SCRIPT_DIR%..") do set "ROOT_DIR=%%~fI\"
 set "DESKTOP_DIR=%ROOT_DIR%kiwi_desktop"
 set "WEB_DIR=%ROOT_DIR%KIWI_Web"
 set "VENV_DIR=%ROOT_DIR%.venv"
 set "VENV_PY=%VENV_DIR%\Scripts\python.exe"
+set "START_SCRIPT=%SCRIPT_DIR%start_kiwi.bat"
 set "BOOTSTRAP_PY="
 set "START_AFTER=0"
 set "FORCE_WEB_INSTALL=0"
@@ -152,12 +154,12 @@ echo ==================================================
 echo KIWI bootstrap complete.
 echo ==================================================
 echo.
-echo Next step: run start_kiwi.bat
+echo Next step: run Start Here.bat and choose Start KIWI
 echo.
 
 if "%START_AFTER%"=="1" (
   echo Launching KIWI now...
-  call "%ROOT_DIR%start_kiwi.bat" --stable
+  call "%START_SCRIPT%" --stable
   exit /b %errorlevel%
 )
 
@@ -165,5 +167,5 @@ exit /b 0
 
 :fail
 echo.
-echo Bootstrap failed. Fix the error above and run bootstrap_kiwi.bat again.
+echo Bootstrap failed. Fix the error above and rerun Start Here.bat, then choose First-time setup.
 exit /b 1

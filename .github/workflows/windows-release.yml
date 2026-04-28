@@ -89,8 +89,8 @@ jobs:
             "Source commit: ${{ github.sha }}",
             "Built on: $(Get-Date -Format o)",
             "",
-            "Start KIWI: double-click start_kiwi.bat",
-            "Stop KIWI: double-click stop_kiwi.bat",
+            "Start KIWI: double-click Start Here.bat and choose Start KIWI",
+            "Stop KIWI: run Start Here.bat and choose Stop KIWI",
             "Quick start: QUICK_START_WINDOWS.md"
           ) | Set-Content -Path $versionFile -Encoding UTF8
 

@@ -42,7 +42,7 @@ What actually happened?
 
 ## Error Text
 
-Paste terminal text from `start_kiwi.bat` or other KIWI windows.
+Paste terminal text from `Start Here.bat` or other KIWI windows.
 
 ## Screenshot
 

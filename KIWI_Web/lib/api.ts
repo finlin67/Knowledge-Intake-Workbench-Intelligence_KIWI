@@ -1,6 +1,7 @@
 const BASE_URL = process.env.NEXT_PUBLIC_KIWI_API_BASE ?? 'http://localhost:8000'
 const API_BASE_STORAGE_KEY = 'kiwi_api_base'
-const API_REQUEST_TIMEOUT_MS = 15000
+const API_REQUEST_TIMEOUT_MS = 30000
+const BATCH_PREP_REQUEST_TIMEOUT_MS = 5 * 60 * 1000
 const API_BASE_CANDIDATES = [
   BASE_URL,
   'http://127.0.0.1:8000',
@@ -129,7 +130,8 @@ async function fetchWithTimeout(input: string, init: RequestInit, timeoutMs: num
     return await fetch(input, { ...init, signal: controller.signal })
   } catch (err) {
     if (err instanceof DOMException && err.name === 'AbortError') {
-      throw new Error('KIWI API request timed out. Check that the backend is running, then retry.')
+      const seconds = Math.max(1, Math.round(timeoutMs / 1000))
+      throw new Error(`KIWI API request timed out after ${seconds}s (${input}). Check that the backend is running, then retry.`)
     }
     throw err
   } finally {
@@ -173,7 +175,7 @@ export async function getApiBaseUrl(forceReprobe = false): Promise<string> {
   return resolveApiBaseUrl(forceReprobe)
 }
 
-async function request<T>(path: string, init?: RequestInit): Promise<T> {
+async function request<T>(path: string, init?: RequestInit, timeoutMs = API_REQUEST_TIMEOUT_MS): Promise<T> {
   const shouldRetryRouting = (status: number, contentType: string) =>
     path.startsWith('/api/') && (status === 404 || status === 405 || contentType.includes('text/html'))
 
@@ -185,7 +187,7 @@ async function request<T>(path: string, init?: RequestInit): Promise<T> {
       ...(init?.headers ?? {})
     }
   }
-  const execute = (base: string) => fetchWithTimeout(`${base}${path}`, requestInit, API_REQUEST_TIMEOUT_MS)
+  const execute = (base: string) => fetchWithTimeout(`${base}${path}`, requestInit, timeoutMs)
 
   let res: Response
   try {
@@ -386,14 +388,14 @@ export async function previewBatchPrep(payload: BatchPrepRequest): Promise<Batch
   return request('/api/batch-prep/preview', {
     method: 'POST',
     body: JSON.stringify(payload)
-  })
+  }, BATCH_PREP_REQUEST_TIMEOUT_MS)
 }
 
 export async function runBatchPrep(payload: BatchPrepRequest): Promise<BatchPrepRunResponse> {
   return request('/api/batch-prep/run', {
     method: 'POST',
     body: JSON.stringify(payload)
-  })
+  }, BATCH_PREP_REQUEST_TIMEOUT_MS)
 }
 
 export { BASE_URL, SESSION_KEY }

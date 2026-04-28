@@ -4,7 +4,7 @@ This guide explains the day-to-day operator flow in plain language.
 
 ## Before you begin
 
-1. Start KIWI from the parent folder using start_kiwi.bat.
+1. Start KIWI from the parent folder using Start Here.bat.
 2. Open http://localhost:3000.
 3. Confirm Home/Setup shows Backend: Online.
 
@@ -43,13 +43,13 @@ Use one project for related batches. Change only the batch folder each cycle.
 
 ## Common checks
 
-- Backend Offline: rerun start_kiwi.bat.
+- Backend Offline: rerun Start Here.bat.
 - Buttons inactive: confirm Save Project then Scan Batch are complete.
 - Scan found 0 files: verify import base path and batch folder name.
 - Batch changed and UI looks stale: refresh browser once.
 
 ## Related docs
 
-- Quick start: QUICK_START_WINDOWS.md
+- Quick start: ../QUICK_START_WINDOWS.md
 - Walkthroughs: BEGINNER_WALKTHROUGHS.md
 - Release checks: RELEASE_CHECKLIST.md

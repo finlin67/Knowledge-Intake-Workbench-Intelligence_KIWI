@@ -6,6 +6,9 @@
 **/dist/
 **/build/
 **/out/
+Support Scripts/*.spec
+*.spec
+KIWI Launcher.exe
 
 # Environment files
 .env

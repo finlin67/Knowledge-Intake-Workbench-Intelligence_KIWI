@@ -2,7 +2,7 @@
 
 ## Scenario 1: First run
 
-1. Double-click start_kiwi.bat from the parent KIWI folder.
+1. Double-click Start Here.bat from the parent KIWI folder.
 2. Open the browser URL shown by the script (usually http://localhost:3000).
 3. Confirm Home/Setup shows Backend: Online.
 4. In Step 1, enter project info and click Save Project.

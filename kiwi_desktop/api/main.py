@@ -11,7 +11,7 @@ ROOT_DIR = Path(__file__).resolve().parent.parent
 if str(ROOT_DIR) not in sys.path:
     sys.path.insert(0, str(ROOT_DIR))
 
-from api.routers import exports, monitor, projects, queue, scan, settings
+from api.routers import batch_prep, exports, monitor, projects, queue, scan, settings
 
 app = FastAPI(title="KIWI API")
 
@@ -34,6 +34,7 @@ app.include_router(queue.router, prefix="/api")
 app.include_router(settings.router, prefix="/api")
 app.include_router(exports.router, prefix="/api")
 app.include_router(monitor.router, prefix="/api")
+app.include_router(batch_prep.router, prefix="/api")
 
 
 @app.get("/api/health")

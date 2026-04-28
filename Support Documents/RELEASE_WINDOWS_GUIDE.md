@@ -7,8 +7,8 @@ This guide explains how to publish KIWI on GitHub so non-technical users can dow
 1. Open the latest GitHub Release.
 2. Download `KIWI-windows-portable-<version>.zip`.
 3. Extract it.
-4. Double-click `bootstrap_kiwi.bat` (first-time setup only; creates Python/.venv and installs web dependencies).
-5. Once bootstrap completes, double-click `start_kiwi.bat`.
+4. Double-click `Start Here.bat` and choose **First-time setup** (creates Python/.venv and installs web dependencies).
+5. Once setup completes, run `Start Here.bat` and choose **Start KIWI**.
 6. Open `http://localhost:3000` in a browser.
 
 ## Maintainer workflow
@@ -40,13 +40,15 @@ git push origin v1.0.0
 
 ## What gets packaged
 
-- Root scripts and docs (including `start_kiwi.bat`, `stop_kiwi.bat`, `QUICK_START_WINDOWS.md`)
+- Root launcher/docs plus support scripts (including `Start Here.bat`, `Support Scripts/start_kiwi.bat`, `Support Scripts/stop_kiwi.bat`, `QUICK_START_WINDOWS.md`)
 - `KIWI_Web`
 - `kiwi_desktop`
 
 The package excludes heavy/dev directories (`.git`, `.github`, `node_modules`, `.next`, `.venv`, `__pycache__`, etc.).
 
 ## Recommended release notes template
+
+Maintainer: generate the checksum value with `Get-FileHash ".\KIWI Launcher.exe" -Algorithm SHA256 | Select-Object -ExpandProperty Hash` and paste it into the Expected SHA256 line.
 
 Use this template in GitHub Release notes:
 
@@ -55,8 +57,8 @@ Download: KIWI-windows-portable-<version>.zip
 
 Quick Start (Windows):
 1) Extract ZIP
-2) Double-click bootstrap_kiwi.bat (first-time setup; creates Python environment and installs dependencies)
-3) Double-click start_kiwi.bat
+2) Double-click Start Here.bat and choose First-time setup
+3) Run Start Here.bat and choose Start KIWI
 4) Open http://localhost:3000
 
 Requirements:
@@ -65,7 +67,13 @@ Requirements:
 - Python 3.11+
 - Optional: Ollama for local AI mode
 
+Trust and verification:
+- KIWI Launcher.exe is an unsigned internal launcher.
+- Verify file integrity before running:
+	PowerShell: Get-FileHash ".\KIWI Launcher.exe" -Algorithm SHA256
+- Expected SHA256: <paste release checksum here>
+
 Troubleshooting:
-- If backend shows Offline, rerun bootstrap_kiwi.bat, then start_kiwi.bat
+- If backend shows Offline, rerun Start Here.bat and choose First-time setup, then Start KIWI
 - If port conflict appears, close prior KIWI windows and try again
 ```

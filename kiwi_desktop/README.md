@@ -2,7 +2,7 @@
 
 This folder contains KIWI local backend and processing tooling.
 
-For most users, start from the parent folder and run start_kiwi.bat.
+For most users, start from the parent folder and run Start Here.bat.
 
 ## Role in the product
 
@@ -32,6 +32,6 @@ Then run KIWI_Web separately or use parent scripts from the repo root.
 
 - Parent overview: ../README.md
 - Windows quick start: ../QUICK_START_WINDOWS.md
-- Operator guide: ../USER_GUIDE.md
+- Operator guide: ../Support Documents/USER_GUIDE.md
 - Architecture notes: docs/architecture.md
 - Desktop developer details: DEVELOPER_GUIDE.md

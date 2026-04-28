@@ -1,10 +1,11 @@
 @echo off
 setlocal
 
-set "ROOT_DIR=%~dp0"
+set "SCRIPT_DIR=%~dp0"
+for %%I in ("%SCRIPT_DIR%..") do set "ROOT_DIR=%%~fI\"
 set "DESKTOP_DIR=%ROOT_DIR%kiwi_desktop"
 set "WEB_DIR=%ROOT_DIR%KIWI_Web"
-set "BOOTSTRAP_SCRIPT=%ROOT_DIR%bootstrap_kiwi.bat"
+set "BOOTSTRAP_SCRIPT=%SCRIPT_DIR%bootstrap_kiwi.bat"
 set "ROOT_VENV_PY=%ROOT_DIR%.venv\Scripts\python.exe"
 set "DESKTOP_VENV_PY=%DESKTOP_DIR%\.venv\Scripts\python.exe"
 set "PYTHON_EXE="
@@ -12,11 +13,27 @@ set "API_PORT="
 set "BACKEND_MODE=dev"
 set "UVICORN_RELOAD_ARG=--reload"
 set "BOOTSTRAP_REASON="
+set "AUTO_OPEN_BROWSER=1"
 
+if /I "%KIWI_NO_BROWSER%"=="1" set "AUTO_OPEN_BROWSER=0"
+
+:parse_args
+if "%~1"=="" goto :args_done
 if /I "%~1"=="--stable" (
   set "BACKEND_MODE=stable"
   set "UVICORN_RELOAD_ARG="
+  shift
+  goto :parse_args
 )
+if /I "%~1"=="--no-browser" (
+  set "AUTO_OPEN_BROWSER=0"
+  shift
+  goto :parse_args
+)
+shift
+goto :parse_args
+
+:args_done
 
 if /I "%KIWI_STABLE_BACKEND%"=="1" (
   set "BACKEND_MODE=stable"
@@ -122,13 +139,19 @@ timeout /t 2 /nobreak >nul
 echo Starting web app...
 start "KIWI Web (port 3000)" cmd /k "cd /d "%WEB_DIR%" && set NEXT_PUBLIC_KIWI_API_BASE=http://127.0.0.1:%API_PORT% && npm run dev"
 
+if "%AUTO_OPEN_BROWSER%"=="1" (
+  timeout /t 1 /nobreak >nul
+  start "" "http://localhost:3000"
+)
+
 echo.
 echo Open KIWI here: http://localhost:3000
 echo Backend health: http://127.0.0.1:%API_PORT%/api/health
 echo In Home/Setup, "Backend: Online" means the local KIWI API is reachable and ready.
 echo.
 echo Keep both terminal windows open while using KIWI.
-echo Tip: run start_kiwi.bat --stable to disable backend auto-reload.
+echo Tip: run Start Here.bat --stable to disable backend auto-reload.
+echo Tip: run Support Scripts\start_kiwi.bat --no-browser to disable auto-open.
 echo If something fails, copy this window text into a GitHub issue.
 echo.
 pause
@@ -147,7 +170,7 @@ if not exist "%BOOTSTRAP_SCRIPT%" (
 choice /C YN /N /M "Run bootstrap_kiwi.bat now? [Y/N]: "
 if errorlevel 2 (
   echo.
-  echo Startup cancelled. Run bootstrap_kiwi.bat first, then start_kiwi.bat.
+  echo Startup cancelled. Run Start Here.bat and choose First-time setup.
   exit /b 1
 )
 
